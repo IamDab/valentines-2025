@@ -3,19 +3,24 @@ body{
     font-family: 'Pacifico', cursive;
     overflow: hidden;
     color: #fff;
-  }
-  .bgoverlay{
     background: rgb(103,58,183);
     background: rgba(103,58,183,0.7);
-    position: absolute;
-    top:0;
+    margin: 0;
+    height: 100%;
+  }
+  .bgoverlay{
+    /* background: rgb(103,58,183);
+    background: rgba(103,58,183,0.7); */
+    position: relative;
+    /* top:0;
     left:0;
     right:0;
-    bottom:0;
+    bottom:0; */
+    height: 99%;
   }
   .container{
     position: relative;
-    margin: 200px auto 0 auto;
+    margin: 100px auto 0 auto;
     width: 500px;
   }
   
