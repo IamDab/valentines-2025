@@ -1,0 +1,82 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #a32a71;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+h1 {
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    transition: opacity 1s ease-in-out;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out;
+}
+
+button {
+    font-size: 1.5rem;
+    padding: 12px 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.yes {
+    background-color: #ec8abb;
+    color: white;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.no {
+    background-color: #ff4444;
+    color: white;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Hearts animation */
+.heart {
+    position: absolute;
+    color: red;
+    font-size: 2rem;
+    animation: float 2s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-200px); opacity: 0; }
+}
+
+/* Love message */
+.love-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <link rel="stylesheet" href="src/css/style-5.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        /* Full-screen white overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #a32a71;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: black;
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            animation: fadeOut 10.5s ease-in-out forwards;
+            
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+    </style>
+<body>
+    <div class="overlay">"Take delight in the Lord, and He will give you the desires of your heart."</div>
+    <h1 id="question">Will You Be My Valentine? ❤️</h1>
+
+    <div class="buttons" id="buttons">
+        <button class="yes" onclick="showHearts()">Yes 💘</button>
+        <button class="no" onclick="spawnYesButton()">No 💔</button>
+    </div>
+
+    <div class="love-message" id="loveMessage">I Love You ❤️</div>
+
+    <script src="src/js/valentine.js"></script>
+</body>
+</html>
