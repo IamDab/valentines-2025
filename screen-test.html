@@ -10,7 +10,7 @@
     background: linear-gradient(45deg, #ff6b81, #ff8fab);
 }
 
-#dragScreen {
+.dragScreen {
     width: 200px;
     height: 100px;
     background: white;
@@ -36,49 +36,65 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="dragScreen">Drag Me</div>
+    <div class="dragScreen">Drag Me</div>
+    <div class="dragScreen">Drag Me2</div>
+    <div class="dragScreen">Drag Me2</div>
+    <div class="dragScreen">Drag Me2</div>
 
     <script src="script.js"></script>
 </body>
 
 <script>
-    const dragScreen = document.getElementById("dragScreen");
+ const dragScreens = document.querySelectorAll(".dragScreen");
 
 let offsetX = 0, offsetY = 0;
 let isDragging = false;
+let activeElement = null;
+let zIndexCounter = 1000; // Start with a high z-index to keep track of stacking
 
-// Mouse Events
-dragScreen.addEventListener("mousedown", startDrag);
-document.addEventListener("mousemove", onDrag);
-document.addEventListener("mouseup", stopDrag);
+// Loop through all elements with class "dragScreen"
+dragScreens.forEach(dragScreen => {
+    // Mouse Events
+    dragScreen.addEventListener("mousedown", startDrag);
+    document.addEventListener("mousemove", onDrag);
+    document.addEventListener("mouseup", stopDrag);
 
-// Touch Events
-dragScreen.addEventListener("touchstart", startDrag);
-document.addEventListener("touchmove", onDrag);
-document.addEventListener("touchend", stopDrag);
+    // Touch Events
+    dragScreen.addEventListener("touchstart", startDrag);
+    document.addEventListener("touchmove", onDrag);
+    document.addEventListener("touchend", stopDrag);
+});
 
 function startDrag(event) {
     isDragging = true;
+    activeElement = event.target.closest(".dragScreen"); // Identify the active dragged element
+
+    // Set the highest z-index when clicked
+    activeElement.style.zIndex = zIndexCounter++;
+    
     let clientX = event.clientX || event.touches[0].clientX;
     let clientY = event.clientY || event.touches[0].clientY;
 
-    offsetX = clientX - dragScreen.offsetLeft;
-    offsetY = clientY - dragScreen.offsetTop;
+    offsetX = clientX - activeElement.offsetLeft;
+    offsetY = clientY - activeElement.offsetTop;
 }
 
 function onDrag(event) {
-    if (!isDragging) return;
+    if (!isDragging || !activeElement) return;
 
     let clientX = event.clientX || event.touches[0].clientX;
     let clientY = event.clientY || event.touches[0].clientY;
 
-    dragScreen.style.left = `${clientX - offsetX}px`;
-    dragScreen.style.top = `${clientY - offsetY}px`;
+    activeElement.style.position = "absolute"; // Ensure the element is positioned correctly
+    activeElement.style.left = `${clientX - offsetX}px`;
+    activeElement.style.top = `${clientY - offsetY}px`;
 }
 
 function stopDrag() {
     isDragging = false;
+    activeElement = null;
 }
+
 
     </script>
 </html>

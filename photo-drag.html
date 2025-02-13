@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="src/css/style-4.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Gwapa ZZ</title>
+</head>
+<body>
+<div class="container-lg">
+
+    <div class="container-sm dragScreen d-flex flex-column justify-content-center align-items-center text-center" style="height: 45vh; width: 15%;">
+        <div class="row ">
+            <div  >
+                <img src="src/img/mess-4.jpg" alt="" class="img-fluid" style="height: 320px; width: 300px; border: 1px white solid; box-shadow: 1px 10px 10px black; ">
+            </div>
+            <div class="col-md mt-3 ">
+                <p>Hoy!! Lingi sa bi 😝</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-sm dragScreen d-flex flex-column justify-content-center align-items-center text-center" style="height: 40vh; width: 20%;">
+        <div class="row ">
+            <div  >
+                <img src="src/img/mess-3.jpg" alt="" class="img-fluid" style="height: 300px; width: 250px; border: 1px white solid; box-shadow: 1px 10px 10px black; ">
+            </div>
+        </div>
+    </div>
+    <div class="container-sm dragScreen d-flex flex-column justify-content-center align-items-center text-center" style="height: 40vh; width: 15%;">
+        <div class="row ">
+            <div class="col ">
+                <p>Dagway sa gwapa sa bi hehe</p>
+            </div>
+            <div  >
+                <img src="src/img/mess-1.jpg" alt="" class="img-fluid" style="height: 90%; width: 70%; border: 1px white solid; box-shadow: 1px 10px 10px black; ">
+            </div>
+        </div>
+    </div>
+
+        <div class=" container-sm dragScreen  d-flex justify-content-center align-items-center " style="height: 20vh; width: 30%;">
+            <div class="row text-center ">
+                <div class="col ">
+                    <p>Virtual bulak lang sata kay mahal kaayo</p>
+                    <p>ang bulak ara gud😅.</p>
+                    <p>Sakto kaayo ipang plete nalang nako padung ara</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class=" container-sm dragScreen  d-flex justify-content-center align-items-center " style="height: 20vh; width: 30%;">
+            <div class="row text-center ">
+                <div class="col ">
+                    <p>Gisugo nako ng bata ipa hatag sa imoha</p>
+                    <p>Kay kahibaw kong daisy imo ganahan na bulak</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="container-sm dragScreen " style="height: 50vh; width: 40%;">
+            <div class="row justify-content-center text-center">
+                <div class="col-10 col-md-5 col-lg-10 image-paper" >
+                    <p class="text-center"><b>For you!!</b></p>
+                    <img src="src/img/OIP.jpg" alt="flower">
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="dragScreen container-fluid d-flex justify-content-center align-items-center text-center" style="height: 50vh; width: 40%;">
+            <div class="row">
+                <div class="col align-self-center">
+                    <p class="fs-4 fs-md-2">Drag the papers to move!</p>
+                </div>
+            </div>
+        </div>
+        
+        
+<!-- 
+    <script src="script.js"></script> -->
+</div>
+</body>
+
+<script>
+ const dragScreens = document.querySelectorAll(".dragScreen");
+
+let offsetX = 0, offsetY = 0;
+let isDragging = false;
+let activeElement = null;
+let zIndexCounter = 1000; // Track stacking order
+
+// Loop through all elements with class "dragScreen"
+dragScreens.forEach(dragScreen => {
+    // Mouse Events
+    dragScreen.addEventListener("mousedown", startDrag);
+    document.addEventListener("mousemove", onDrag);
+    document.addEventListener("mouseup", stopDrag);
+
+    // Touch Events
+    dragScreen.addEventListener("touchstart", startDrag);
+    document.addEventListener("touchmove", onDrag);
+    document.addEventListener("touchend", stopDrag);
+});
+
+function startDrag(event) {
+    isDragging = true;
+    activeElement = event.target.closest(".dragScreen"); // Identify active dragged element
+
+    // Set highest z-index when clicked
+    activeElement.style.zIndex = zIndexCounter++;
+
+    let clientX = event.clientX || event.touches[0].clientX;
+    let clientY = event.clientY || event.touches[0].clientY;
+
+    offsetX = clientX - activeElement.offsetLeft;
+    offsetY = clientY - activeElement.offsetTop;
+}
+
+function onDrag(event) {
+    if (!isDragging || !activeElement) return;
+
+    let clientX = event.clientX || event.touches[0].clientX;
+    let clientY = event.clientY || event.touches[0].clientY;
+
+    activeElement.style.position = "absolute"; // Ensure correct positioning
+    activeElement.style.left = `${clientX - offsetX}px`;
+    activeElement.style.top = `${clientY - offsetY}px`;
+}
+
+function stopDrag() {
+    isDragging = false;
+    activeElement = null;
+}
+
+
+
+    </script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</html>

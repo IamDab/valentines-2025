@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("../img/paper.jpg");
+}
+
+.dragScreen {
+    /* width: 200px;
+    height: 500px; */
+    background: white;
+    font-family: 'Dancing Script', cursive;
+    background-image: url("../img/paper.jpg");
+    font-size: 24px;
+    color: #0a0a0a; /* A romantic pink color */
+    line-height: 1.1;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 1px 15px 20px 0px rgba(0,0,0,0.5);
+    padding: 20px 100px;
+    background-size: 600px;
+    cursor: grab;
+}
+.image-paper img {
+  width: 60%; /* Default full width */
+  max-width: 600px; /* Prevents excessive stretching */
+  height: 41vh; /* Maintains aspect ratio */
+}
+
+@media (max-width: 1024px) { 
+  .image-paper img {
+    width: 90%;
+      max-width: 100%; /* Reduces width on 1024px screens */
+      height: 28vh;
+  }
+}
+
+@media (max-width: 768px) { 
+  .image-paper img {
+      max-width: 90%; /* Adjusts for smaller screens */
+  }
+}
+
+@media (max-width: 480px) { 
+  .image-paper img {
+      max-width: 100%; /* Full width on very small screens */
+  }
+}
