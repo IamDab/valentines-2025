@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<style>
+    body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #ff6b81, #ff8fab);
+}
+
+#dragScreen {
+    width: 200px;
+    height: 100px;
+    background: white;
+    color: black;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+}
+</style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag & Drop Touchscreen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="dragScreen">Drag Me</div>
+
+    <script src="script.js"></script>
+</body>
+
+<script>
+    const dragScreen = document.getElementById("dragScreen");
+
+let offsetX = 0, offsetY = 0;
+let isDragging = false;
+
+// Mouse Events
+dragScreen.addEventListener("mousedown", startDrag);
+document.addEventListener("mousemove", onDrag);
+document.addEventListener("mouseup", stopDrag);
+
+// Touch Events
+dragScreen.addEventListener("touchstart", startDrag);
+document.addEventListener("touchmove", onDrag);
+document.addEventListener("touchend", stopDrag);
+
+function startDrag(event) {
+    isDragging = true;
+    let clientX = event.clientX || event.touches[0].clientX;
+    let clientY = event.clientY || event.touches[0].clientY;
+
+    offsetX = clientX - dragScreen.offsetLeft;
+    offsetY = clientY - dragScreen.offsetTop;
+}
+
+function onDrag(event) {
+    if (!isDragging) return;
+
+    let clientX = event.clientX || event.touches[0].clientX;
+    let clientY = event.clientY || event.touches[0].clientY;
+
+    dragScreen.style.left = `${clientX - offsetX}px`;
+    dragScreen.style.top = `${clientY - offsetY}px`;
+}
+
+function stopDrag() {
+    isDragging = false;
+}
+
+    </script>
+</html>
